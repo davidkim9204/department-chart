@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Employee from "./Employee";
 import Divider from "../Divider";
+import { useRecoilState } from "recoil";
+import { searchInputState, selectDepartmentState } from "../../states/atoms";
 
 const StyledWrapper = styled.div`
   flex: 2;
@@ -14,7 +16,9 @@ const StyledHeaderWrapper = styled.div`
 `;
 
 function EmployeeList(props) {
-  const { employeesList, selectedDepartment, inputText, setInputText } = props;
+  const { employeesList } = props;
+  const [inputText, setInputText] = useRecoilState(searchInputState);
+  const [selectedDepartment] = useRecoilState(selectDepartmentState);
 
   const onInputChange = (e) => {
     setInputText(e.target.value);

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import DepartmentNode from "./DepartmentNode";
+import { useSetRecoilState } from "recoil";
+import { searchInputState, selectDepartmentState } from "../../states/atoms";
 
 const StyledList = styled.ul`
   list-style-type: none;
@@ -13,12 +15,14 @@ const StyledWrapper = styled.div`
 `;
 
 function DepartmentList(props) {
-  const { departmentList, employeesList, setSelectedDepartment, setInputText } =
-    props;
+  const { departmentList, employeesList } = props;
+
+  const setSearchInput = useSetRecoilState(searchInputState);
+  const setSelectDepartment = useSetRecoilState(selectDepartmentState);
 
   const handleClick = (department) => {
-    setSelectedDepartment(department);
-    setInputText("");
+    setSelectDepartment(department);
+    setSearchInput("");
   };
 
   const rootDepartments = departmentList.filter((d) => d.parentCode === "0");

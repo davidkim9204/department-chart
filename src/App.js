@@ -8,6 +8,9 @@ import DepartmentList from "./components/DepartmentList";
 import EmployeeList from "./components/EmployeeList";
 import data from "./api/choonsik_company_org.json";
 
+import { useRecoilState } from "recoil";
+import { searchInputState, selectDepartmentState } from "./states/atoms";
+
 const StyledWrapper = styled.div`
   display: flex;
   padding-top: 8px;
@@ -18,8 +21,7 @@ function App() {
   const userId = searchParams.get("userId");
   const isUserId = data.userList.find((employee) => employee.id === userId);
   const initialData = { code: "11003", name: "대표", parentCode: "10000" };
-  const [selectedDepartment, setSelectedDepartment] = useState(initialData);
-  const [inputText, setInputText] = useState(isUserId ? isUserId.id : "");
+  const [selectedDepartment] = useRecoilState(selectDepartmentState);
 
   return (
     <>
@@ -29,17 +31,8 @@ function App() {
           <DepartmentList
             departmentList={data.departmentList}
             employeesList={data.userList}
-            setSelectedDepartment={setSelectedDepartment}
-            setInputText={setInputText}
           />
-          {selectedDepartment && (
-            <EmployeeList
-              employeesList={data.userList}
-              selectedDepartment={selectedDepartment}
-              inputText={inputText}
-              setInputText={setInputText}
-            />
-          )}
+          {selectedDepartment && <EmployeeList employeesList={data.userList} />}
         </StyledWrapper>
       </Layout>
     </>
