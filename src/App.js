@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import Layout from "./components/Layout";
 import styled from "styled-components";
@@ -13,9 +14,12 @@ const StyledWrapper = styled.div`
 `;
 
 function App() {
+  const [searchParams] = useSearchParams();
+  const userId = searchParams.get("userId");
+  const isUserId = data.userList.find((employee) => employee.id === userId);
   const initialData = { code: "11003", name: "대표", parentCode: "10000" };
   const [selectedDepartment, setSelectedDepartment] = useState(initialData);
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(isUserId ? isUserId.id : "");
 
   return (
     <>

@@ -37,6 +37,7 @@ function Employee(props) {
 
   const Arrow = styled.div`
     margin-left: auto;
+    margin-right: 4px;
     border-style: solid;
     border-color: ${({ isOpen }) => (isOpen ? "black" : "#bbbbbb")};
     border-width: 0 2px 2px 0;
