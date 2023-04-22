@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import DepartmentNode from "./DepartmentNode";
 
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
+
 const StyledWrapper = styled.div`
   flex: 1;
-  background-color: #eeeeee;
+  background-color: #f2f2f2;
   margin: 0 10px;
+  border: 1px solid #989898;
 `;
 
 function DepartmentList(props) {
@@ -19,7 +24,7 @@ function DepartmentList(props) {
   const rootDepartments = departmentList.filter((d) => d.parentCode === "0");
   return (
     <StyledWrapper>
-      <ul>
+      <StyledList>
         {rootDepartments.map((rootDepartment) => (
           <DepartmentNode
             key={rootDepartment.code}
@@ -29,7 +34,7 @@ function DepartmentList(props) {
             onClick={handleClick}
           />
         ))}
-      </ul>
+      </StyledList>
     </StyledWrapper>
   );
 }

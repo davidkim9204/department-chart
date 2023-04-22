@@ -3,7 +3,7 @@ import Employee from "./Employee";
 import Divider from "../Divider";
 
 const StyledWrapper = styled.div`
-  flex: 1;
+  flex: 2;
   background-color: white;
   padding: 0 20px;
 `;

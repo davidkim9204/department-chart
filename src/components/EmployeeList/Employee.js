@@ -18,7 +18,7 @@ function Employee(props) {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: grey;
+    background-color: #989898;
     margin-right: 8px;
   `;
 
@@ -29,7 +29,7 @@ function Employee(props) {
   const CardSection = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #eeeeee;
+    background-color: #f2f2f2;
     border-radius: 10px;
     margin: 10px 0 10px 40px;
     padding: 10px;
