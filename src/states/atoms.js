@@ -9,3 +9,8 @@ export const selectDepartmentState = atom({
   key: "selectDepartmentState",
   default: { code: "11003", name: "대표", parentCode: "10000" },
 });
+
+export const selectCardState = atom({
+  key: "selectCardState",
+  default: {},
+});

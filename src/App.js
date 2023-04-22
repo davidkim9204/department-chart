@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import Layout from "./components/Layout";
@@ -9,7 +8,7 @@ import EmployeeList from "./components/EmployeeList";
 import data from "./api/choonsik_company_org.json";
 
 import { useRecoilState } from "recoil";
-import { searchInputState, selectDepartmentState } from "./states/atoms";
+import { selectDepartmentState } from "./states/atoms";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -20,7 +19,6 @@ function App() {
   const [searchParams] = useSearchParams();
   const userId = searchParams.get("userId");
   const isUserId = data.userList.find((employee) => employee.id === userId);
-  const initialData = { code: "11003", name: "대표", parentCode: "10000" };
   const [selectedDepartment] = useRecoilState(selectDepartmentState);
 
   return (

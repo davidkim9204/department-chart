@@ -1,61 +1,53 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { selectCardState } from "../../states/atoms";
+
+const ListWrapper = styled.div`
+  margin-bottom: 8px;
+`;
+
+const ProfileSection = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const CircleProfile = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #989898;
+  margin-right: 8px;
+`;
+
+const ProfileItem = styled.div`
+  margin-right: 4px;
+`;
+
+const CardSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin: 10px 0 10px 40px;
+  padding: 10px;
+`;
+
+const Arrow = styled.div`
+  margin-left: auto;
+  margin-right: 4px;
+  border-style: solid;
+  border-color: ${({ isOpen }) => (isOpen ? "black" : "#bbbbbb")};
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: ${({ isOpen }) => (isOpen ? "rotate(-135deg)" : "rotate(45deg)")};
+`;
 
 function Employee(props) {
   const { employees } = props;
 
-  const ListWrapper = styled.div`
-    margin-bottom: 8px;
-  `;
-
-  const ProfileSection = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-  `;
-
-  const CircleProfile = styled.div`
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #989898;
-    margin-right: 8px;
-  `;
-
-  const ProfileItem = styled.div`
-    margin-right: 4px;
-  `;
-
-  const CardSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    margin: 10px 0 10px 40px;
-    padding: 10px;
-  `;
-
-  const Arrow = styled.div`
-    margin-left: auto;
-    margin-right: 4px;
-    border-style: solid;
-    border-color: ${({ isOpen }) => (isOpen ? "black" : "#bbbbbb")};
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: ${({ isOpen }) =>
-      isOpen ? "rotate(-135deg)" : "rotate(45deg)"};
-    transition: transform 0.3s ease-out;
-    transition: transform 0.3s ease-out;
-    cursor: pointer;
-  `;
-
-  const [cardStates, setCardStates] = useState(
-    employees.reduce((acc, employee) => {
-      acc[employee.id] = false;
-      return acc;
-    }, {})
-  );
+  const [cardStates, setCardStates] = useRecoilState(selectCardState);
 
   const toggleCard = (employeeId) => {
     setCardStates((prevState) => ({
