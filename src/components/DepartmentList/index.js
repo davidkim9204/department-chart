@@ -3,14 +3,17 @@ import DepartmentNode from "./DepartmentNode";
 
 const StyledWrapper = styled.div`
   flex: 1;
-  background-color: grey;
+  background-color: #eeeeee;
   margin: 0 10px;
 `;
 
 function DepartmentList(props) {
-  const { departmentList, setSelectedDepartment } = props;
+  const { departmentList, employeesList, setSelectedDepartment, setInputText } =
+    props;
+
   const handleClick = (department) => {
     setSelectedDepartment(department);
+    setInputText("");
   };
 
   const rootDepartments = departmentList.filter((d) => d.parentCode === "0");
@@ -22,6 +25,7 @@ function DepartmentList(props) {
             key={rootDepartment.code}
             department={rootDepartment}
             departmentList={departmentList}
+            employeesList={employeesList}
             onClick={handleClick}
           />
         ))}

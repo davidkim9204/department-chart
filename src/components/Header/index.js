@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -6,7 +5,7 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #051834;
+  background-color: #212c48;
   color: #fff;
   display: flex;
   flex-direction: column;
