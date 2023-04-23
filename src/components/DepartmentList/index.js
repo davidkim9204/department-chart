@@ -16,6 +16,7 @@ const StyledWrapper = styled.div`
   background-color: #f2f2f2;
   margin: 0 10px;
   border: 1px solid #989898;
+  height: 90vh;
 `;
 
 function DepartmentList(props) {

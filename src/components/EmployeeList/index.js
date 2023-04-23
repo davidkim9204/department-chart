@@ -13,6 +13,17 @@ const StyledWrapper = styled.div`
 const StyledHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  font-size: 24px;
+`;
+
+const StyledDepartmentName = styled.span`
+  font-weight: 700;
+`;
+
+const StyledInput = styled.input`
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #989898;
 `;
 
 function EmployeeList(props) {
@@ -43,18 +54,23 @@ function EmployeeList(props) {
     <StyledWrapper>
       <StyledHeaderWrapper>
         <div>
-          {selectedDepartment && (
+          {selectedDepartment && !filterInputText && (
             <div>
-              {selectedDepartment.name} {filteredEmployees.length}명
+              <StyledDepartmentName>
+                {selectedDepartment.name}{" "}
+              </StyledDepartmentName>
+              {filteredEmployees.length > 0 && (
+                <span>{filteredEmployees.length}명</span>
+              )}
             </div>
           )}
         </div>
         <div>
-          <input
+          <StyledInput
             placeholder="팀, 구성원 검색"
             onChange={onInputChange}
             value={inputText}
-          ></input>
+          ></StyledInput>
         </div>
       </StyledHeaderWrapper>
       <Divider />

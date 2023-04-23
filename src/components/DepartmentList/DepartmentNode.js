@@ -1,6 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  margin: 3px 0;
+`;
+
 const StyledList = styled.ul`
   list-style-type: none;
 `;
@@ -13,7 +17,7 @@ const DepartmentNameWrapper = styled.div`
 const StyledButton = styled.button`
   background-color: white;
   color: black;
-  border: none;
+  border: 1px solid #989898;
 `;
 
 function DepartmentNode(props) {
@@ -34,7 +38,7 @@ function DepartmentNode(props) {
   };
 
   return (
-    <>
+    <Wrapper>
       <li onClick={() => onClick(department)}>
         <DepartmentNameWrapper>
           {subDepartments.length > 0 && (
@@ -59,7 +63,7 @@ function DepartmentNode(props) {
           ))}
         </StyledList>
       )}
-    </>
+    </Wrapper>
   );
 }
 
