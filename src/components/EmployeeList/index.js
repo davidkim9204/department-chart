@@ -43,7 +43,7 @@ function EmployeeList(props) {
     <StyledWrapper>
       <StyledHeaderWrapper>
         <div>
-          {!filterInputText && (
+          {selectedDepartment && (
             <div>
               {selectedDepartment.name} {filteredEmployees.length}명
             </div>

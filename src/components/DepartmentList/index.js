@@ -26,6 +26,7 @@ function DepartmentList(props) {
   const setSelectCardState = useSetRecoilState(selectCardState);
 
   const handleClick = (department) => {
+    console.log(department);
     setSelectDepartment(department);
     setSearchInput("");
     setSelectCardState({});

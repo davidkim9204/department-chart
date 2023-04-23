@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import GlobalStyle from "./styles/GlobalStyle";
 import Layout from "./components/Layout";
@@ -7,8 +8,8 @@ import DepartmentList from "./components/DepartmentList";
 import EmployeeList from "./components/EmployeeList";
 import data from "./api/choonsik_company_org.json";
 
-import { useRecoilState } from "recoil";
-import { selectDepartmentState } from "./states/atoms";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { selectDepartmentState, selectCardState } from "./states/atoms";
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -19,7 +20,21 @@ function App() {
   const [searchParams] = useSearchParams();
   const userId = searchParams.get("userId");
   const isUserId = data.userList.find((employee) => employee.id === userId);
-  const [selectedDepartment] = useRecoilState(selectDepartmentState);
+
+  const [selectDepartment, setSelectDepartment] = useRecoilState(
+    selectDepartmentState
+  );
+  const setSelectCardState = useSetRecoilState(selectCardState);
+
+  useEffect(() => {
+    if (isUserId) {
+      setSelectDepartment({
+        code: isUserId.departmentCode,
+        name: isUserId.departmentName,
+      });
+      setSelectCardState({ [isUserId.id]: isUserId.id });
+    }
+  }, [isUserId]);
 
   return (
     <>
@@ -30,7 +45,7 @@ function App() {
             departmentList={data.departmentList}
             employeesList={data.userList}
           />
-          {selectedDepartment && <EmployeeList employeesList={data.userList} />}
+          {selectDepartment && <EmployeeList employeesList={data.userList} />}
         </StyledWrapper>
       </Layout>
     </>
